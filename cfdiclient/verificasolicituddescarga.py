@@ -103,7 +103,7 @@ class VerificaSolicitudDescarga():
         logging.debug('headers', headers)
         logging.debug('soapreq', soapreq)
 
-        response = requests.post(self.SOAP_URL, data=soapreq, headers=headers, verify=True)
+        response = requests.post(self.SOAP_URL, data=soapreq, headers=headers, verify=True, timeout=60)
 
         logging.debug('response', response)
 

@@ -41,7 +41,7 @@ class Validacion():
         'SOAPAction': self.SOAP_ACTION,
     }
 
-    response = requests.post(self.SOAP_URL, data=soapreq, headers=headers, verify=True)
+    response = requests.post(self.SOAP_URL, data=soapreq, headers=headers, verify=True, timeout=60)
 
 
     if response.status_code != requests.codes['ok']:
