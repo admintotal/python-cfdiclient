@@ -35,11 +35,13 @@ class SolicitaDescarga():
         if rfc_emisor is not None:
             solicitud.set('RfcEmisor', rfc_emisor)
         
+        rfc_receptores = etree.SubElement(solicitud, '{{{}}}{}'.format(self.NSMAP['des'], 'RfcReceptores'))
+        
         if rfc_receptor is not None:
-            solicitud.set('RfcReceptor', rfc_receptor)
+            _rfc_receptor = etree.SubElement(rfc_receptores, '{{{}}}{}'.format(self.NSMAP['des'], 'RfcReceptor'))
+            _rfc_receptor.text = rfc_receptor
         
         signature = etree.SubElement(solicitud, 'Signature', nsmap={None: 'http://www.w3.org/2000/09/xmldsig#'})
-
         signedinfo = etree.SubElement(signature, 'SignedInfo', nsmap={None: 'http://www.w3.org/2000/09/xmldsig#'})
 
         canonicalizationmethod = etree.SubElement(signedinfo, 'CanonicalizationMethod')
